@@ -1,22 +1,19 @@
 const openCamera = require('./openCamera');
-const playVideo = require('./playVideo');
-const Peer = require('simple-peer');
+
 const $ = require('jquery');
+const Peer = require('simple-peer');
 
-openCamera(function(stream){
-    playVideo(stream, 'localStream')
-            const p = new Peer({ initiator: location.hash === '#1', trickle: false, stream });
+const p = new Peer({ initiator: location.hash === '#1' , trickle: false});
 
-            p.on('signal', token => {
-                $('#txtMysignal').val(JSON.stringify(token));
-            });
-            $('#btnConnect').click(() => {
-                const tokenFriend = JSON.parse($('#txtFriendsignal').val());
-                p.signal(tokenFriend);
-            });
-            p.on('stream' , friendStream => playVideo(stream, 'friendStream'));
-
-});
-
-
+p.on('signal' , token => { 
+    $('#txtMysignal').val(JSON.stringify(token))
+ });
+ p.on('connect', (connect) => {
+    console.log('CONNECT');
+  })
+  
+ $('#btnConnect').click(() => {
+     const tokenFriend  = JSON.parse($('#txtFriendsignal').val());
+     p.signal(tokenFriend);
+ });
 
