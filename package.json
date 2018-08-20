@@ -10,9 +10,6 @@
     "lodash": "^4.17.10",
     "touch-for-windows": "^1.0.0"
   },
-  "scripts": {
-    "start": "node index.js"
-  },
   "devDependencies": {
     "jquery": "^3.3.1",
     "simple-peer": "^9.1.2"
